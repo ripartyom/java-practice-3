@@ -1,0 +1,60 @@
+package org.example;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Task3_1 {
+     static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<String> tasks = new ArrayList<>();
+
+        while (true) {
+            System.out.println("1 - добавить задачу");
+            System.out.println("2 - удалить первую задачу");
+            System.out.println("3 - удалить задачу по номеру");
+            System.out.println("4 - показать все задачи");
+            System.out.println("5 - выход");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Введите задачу:");
+                    String task = scanner.nextLine();
+                    tasks.add(task);
+                    break;
+
+                case 2:
+                    if (tasks.isEmpty()) {
+                        System.out.println("Список пустой");
+                    } else {
+                        tasks.remove(0);
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Введите номер задачи:");
+                    int number = scanner.nextInt();
+
+                    if (number < 1 || number > tasks.size()) {
+                        System.out.println("Неверный номер");
+                    } else {
+                        tasks.remove(number - 1);
+                    }
+                    break;
+
+                case 4:
+                    System.out.println(tasks);
+                    break;
+
+                case 5:
+                    return;
+
+                default:
+                    System.out.println("Неверная команда");
+            }
+        }
+    }
+}
