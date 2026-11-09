@@ -1,0 +1,35 @@
+package org.example;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Task3_2 {
+    static List<List<String>> groupAnagrams(List<String> words) {
+        Map<String, List<String>> map = new HashMap<>();
+
+        for (String word : words) {
+            char[] letters = word.toCharArray();
+            Arrays.sort(letters);
+
+            String key = new String(letters);
+
+            map.putIfAbsent(key, new ArrayList<>());
+            map.get(key).add(word);
+        }
+
+        return new ArrayList<>(map.values());
+    }
+
+    public static void main(String[] args) {
+        List<String> input = List.of(
+                "listen", "silent", "enlist",
+                "hello", "world",
+                "cat", "act", "tac"
+        );
+
+        System.out.println(groupAnagrams(input));
+    }
+}
